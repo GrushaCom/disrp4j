@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import org.grusha.disrp4j.packet.packets.*;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 
 public abstract class Packet {
 	
@@ -14,11 +15,11 @@ public abstract class Packet {
 	}
 	
 	public JsonObject getData() {
-		return data;
+		return this.data;
 	}
 	
 	public byte[] toBytes() {
-		byte[] data = this.data.toString().getBytes();
+		byte[] data = this.data.toString().getBytes(StandardCharsets.UTF_8);
 		
 		ByteBuffer packet = ByteBuffer.allocate(data.length + 2 * Integer.BYTES);
 		
